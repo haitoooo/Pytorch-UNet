@@ -70,12 +70,13 @@ class BasicDataset(Dataset):
         img = np.asarray(pil_img)
 
         if is_mask:
+            # 创建二分类标签：0表示背景，1表示前景
             mask = np.zeros((newH, newW), dtype=np.int64)
-            for i, v in enumerate(mask_values):
-                if img.ndim == 2:
-                    mask[img == v] = i
-                else:
-                    mask[(img == v).all(-1)] = i
+            # 将所有非零标签值映射为1
+            if img.ndim == 2:
+                mask[img > 0] = 1
+            else:
+                mask[(img > 0).any(-1)] = 1
 
             return mask
 

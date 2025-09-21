@@ -1,3 +1,6 @@
+# python predict.py --model checkpoints/checkpoint_epoch5.pth --input data/imgs/appendix1_img1_2.jpg --output /data/zhenghetao/shumo/unet-predict/appendix1_img1_2_OUT.png --classes 2 --scale 0.5
+
+
 import argparse
 import logging
 import os
